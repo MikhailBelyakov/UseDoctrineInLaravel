@@ -1,0 +1,14 @@
+{
+    "name": "Doctrine",
+    "alias": "doctrine",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Doctrine\\Providers\\ServiceProvider",
+        "Modules\\Doctrine\\Providers\\EventServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

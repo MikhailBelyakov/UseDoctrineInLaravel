@@ -1,0 +1,15 @@
+{
+  "name": "doctrine/example",
+  "type": "project",
+  "description": "The doctrine example.",
+  "license": "MIT",
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  }
+}

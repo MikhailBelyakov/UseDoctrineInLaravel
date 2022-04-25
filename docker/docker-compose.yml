@@ -1,0 +1,47 @@
+version: "3.7"
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: p_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ../:/var/www/html
+    links:
+      - php
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  mysql:
+    build: mysql
+    container_name: p_mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: portal
+      MYSQL_USER: portal
+      MYSQL_PASSWORD: portal
+    volumes:
+      - mysql:/var/lib/mysql
+  redis:
+    image: redis:latest
+    container_name: p_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+  php:
+    build: php
+    container_name: p_php
+    tty: true
+    volumes:
+      - ../:/var/www/html:cached
+    links:
+      - mysql
+      - redis
+volumes:
+  mysql:
+  redis:
